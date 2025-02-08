@@ -195,3 +195,7 @@ input[type="radio"]:hover {
 .form>button:hover {
   background-color: #6c8cff;
 }
+
+.iziToast>.iziToast-close {
+  color: #fff !important;
+}
