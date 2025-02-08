@@ -1,8 +1,8 @@
 import flatpickr from "flatpickr";
 import "flatpickr/dist/flatpickr.min.css";
-
 import iziToast from "izitoast";
 import "izitoast/dist/css/iziToast.min.css";
+import errorIcon from "../img/bi_exclamation-triangle.png";
 
 const refs = {
     button: document.querySelector("[data-start]"),
@@ -27,7 +27,7 @@ const options = {
       if (selectedDates[0] <= Date.now()) {
           button.setAttribute("disabled", "");
           iziToast.warning({
-            iconUrl: '../img/bi_exclamation-triangle.png',
+            iconUrl: errorIcon,
             title: 'Error',
             message: 'Please choose a date in the future',
             messageColor: '#fff',
