@@ -26,7 +26,6 @@ const options = {
       if (selectedDates[0] <= Date.now()) {
           button.setAttribute("disabled", "");
           iziToast.warning({
-            image: "/public/bi_exclamation-triangle.png",
             title: 'Error',
             message: 'Please choose a date in the future',
             messageColor: '#fff',
@@ -34,7 +33,7 @@ const options = {
             backgroundColor: '#ffa000',
             position: 'topRight',
             titleColor: '#fff',
-            iconColor: '#fff',
+            theme: 'dark',
           });
       } else if (selectedDates[0] > Date.now()) {
           button.removeAttribute("disabled");
