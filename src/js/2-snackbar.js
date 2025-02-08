@@ -43,7 +43,7 @@ const handleSubmit = (evt) => {
     evt.preventDefault();
     promiceGenerator()
         .then(value => iziToast.success({
-            iconUrl: '../img/bi_check2-circle.png',
+            iconUrl: '../../src/img/bi_check2-circle.png',
             title: 'OK',
             message: `Fulfilled promise in ${value}ms`,
             messageColor: '#fff',
