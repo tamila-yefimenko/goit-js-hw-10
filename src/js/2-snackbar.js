@@ -1,7 +1,5 @@
 import iziToast from "izitoast";
 import "izitoast/dist/css/iziToast.min.css";
-import checkIcon from "../img/bi_check2-circle.png";
-import errorIcon from "../img/bi_x-octagon.png";
 
 const refs = {
     form: document.querySelector(".form"),
@@ -45,7 +43,7 @@ const handleSubmit = (evt) => {
     evt.preventDefault();
     promiceGenerator()
         .then(value => iziToast.success({
-            iconUrl: checkIcon,
+            iconUrl: "./public/bi_check2-circle.png",
             title: 'OK',
             message: `Fulfilled promise in ${value}ms`,
             messageColor: '#fff',
@@ -56,7 +54,7 @@ const handleSubmit = (evt) => {
             iconColor: '#fff',
 }))
         .catch(error => iziToast.warning({
-            iconUrl: errorIcon,
+            iconUrl: "../public/bi_x-octagon.png",
             title: 'Error',
             message: `Rejected promise in ${error}ms`,
             messageColor: '#fff',
