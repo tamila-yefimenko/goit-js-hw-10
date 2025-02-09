@@ -4,36 +4,34 @@ import "izitoast/dist/css/iziToast.min.css";
 const refs = {
     form: document.querySelector(".form"),
     input: document.querySelector("input[name='delay']"),
-    inputFulfilled: document.querySelector("input[value='fulfilled']"),
-    inputRejected: document.querySelector("input[value='rejected']"),
-    button: document.querySelector("button[type='submit']"),
+    inputs: document.querySelectorAll("input[name='state']"),
 }
 
-const { form, input, inputFulfilled, inputRejected, button } = refs;
+const { form, input, inputs } = refs;
 
 let delay = 0;
 input.addEventListener('input', (evt) => {
     delay = Number(evt.currentTarget.value);
 });
 
-let promiceStatus = "";
-inputFulfilled.addEventListener('change', (evt) => {
-    promiceStatus = evt.currentTarget.getAttribute("value");
-})
+let promiseStatus = "fulfilled";
+inputs.forEach(input => {
+    input.addEventListener('change', (evt) => {
+        promiseStatus = evt.currentTarget.value;
+    });
+});
 
-inputRejected.addEventListener('change', (evt) => {
-    promiceStatus = evt.currentTarget.getAttribute("value");
-})
-
-const promiceGenerator = () => {
+const promiseGenerator = () => {
     const delayValue = delay;
-    const status = promiceStatus;
+    const status = promiseStatus || "fulfilled";
     return new Promise((resolve, reject) => {
         setTimeout(() => {
             if (status === "fulfilled") {
                 resolve(`${delayValue}`);
-            } else {
+            } else if(status === "rejected") {
                 reject(`${delayValue}`);
+            } else {
+                reject("Unknown promise status");
             }
         }, delay)
     });
@@ -41,7 +39,7 @@ const promiceGenerator = () => {
 
 const handleSubmit = (evt) => {
     evt.preventDefault();
-    promiceGenerator()
+    promiseGenerator()
         .then(value => iziToast.success({
             title: 'OK',
             message: `Fulfilled promise in ${value}ms`,
